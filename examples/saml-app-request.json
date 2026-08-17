@@ -1,0 +1,21 @@
+{
+  "key": "splunk-dev",
+  "label": "Splunk Development",
+  "sso_url": "https://splunk-dev.example.com/saml/acs",
+  "audience": "https://splunk-dev.example.com",
+  "recipient": "https://splunk-dev.example.com/saml/acs",
+  "destination": "https://splunk-dev.example.com/saml/acs",
+  "subject_name_id_template": "${user.email}",
+  "status": "ACTIVE",
+  "owner": "observability-platform",
+  "requested_by": "richard.barrett",
+  "environment": "dev",
+  "sal": "SAL2",
+  "attribute_statements": [
+    {
+      "name": "email",
+      "type": "EXPRESSION",
+      "values": ["user.email"]
+    }
+  ]
+}
