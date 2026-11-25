@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     github_token: str = Field(repr=False)
     github_base_branch: str = "main"
     github_catalog_path: str = "catalog/saml_apps.json"
+    github_oauth_catalog_path: str = "catalog/oauth_apps.json"
     github_api_url: str = "https://api.github.com"
     github_api_version: str = "2026-03-10"
     app_log_level: str = "INFO"

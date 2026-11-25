@@ -1,4 +1,4 @@
-.PHONY: install dev test lint docker-up docker-down
+.PHONY: install dev test lint hooks docker-up docker-down
 
 install:
 	python3 -m venv .venv
@@ -12,6 +12,9 @@ test:
 
 lint:
 	. .venv/bin/activate && ruff check .
+
+hooks:
+	. .venv/bin/activate && python -m pre_commit install --install-hooks
 
 docker-up:
 	docker compose up --build

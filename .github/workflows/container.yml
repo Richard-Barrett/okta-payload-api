@@ -1,0 +1,43 @@
+name: Container smoke test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build API image
+        run: docker build --tag okta-payload-api:ci .
+      - name: Start API container
+        id: start-api
+        run: docker run --detach --name okta-payload-api-ci --publish 127.0.0.1:8000:8000 okta-payload-api:ci
+      - name: Check health and example payloads
+        shell: bash
+        run: |
+          base_url=http://127.0.0.1:8000
+          curl --fail --silent --show-error --retry 15 --retry-connrefused --retry-delay 1 \
+            --max-time 5 "${base_url}/healthz"
+
+          for protocol in saml oauth oidc; do
+            curl --fail-with-body --silent --show-error --max-time 5 \
+              --header 'Content-Type: application/json' \
+              --data-binary "@examples/${protocol}-app-request.json" \
+              "${base_url}/v1/okta/${protocol}-applications/validate"
+          done
+      - name: Show API logs on failure
+        if: failure() && steps.start-api.outcome == 'success'
+        run: docker logs okta-payload-api-ci

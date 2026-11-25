@@ -1,0 +1,17 @@
+{
+  "key": "reporting-oauth-dev",
+  "label": "Reporting OAuth2 Web Client",
+  "protocol": "oauth2",
+  "client_type": "web",
+  "grant_types": ["authorization_code"],
+  "response_types": ["code"],
+  "redirect_uris": ["https://reports-dev.example.com/oauth/callback"],
+  "pkce_required": true,
+  "token_endpoint_auth_method": "client_secret_basic",
+  "include_bookmark": false,
+  "status": "INACTIVE",
+  "owner": "analytics-platform",
+  "requested_by": "developer@example.com",
+  "environment": "dev",
+  "sal": "SAL2"
+}

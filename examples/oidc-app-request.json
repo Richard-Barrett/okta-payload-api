@@ -1,0 +1,21 @@
+{
+  "key": "finance-portal-dev",
+  "label": "Finance Portal Development",
+  "protocol": "oidc",
+  "client_type": "web",
+  "redirect_uris": ["https://finance-dev.example.com/oidc/callback"],
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "post_logout_redirect_uris": ["https://finance-dev.example.com/signed-out"],
+  "pkce_required": true,
+  "token_endpoint_auth_method": "client_secret_basic",
+  "include_bookmark": true,
+  "bookmark_url": "https://finance-dev.example.com/login",
+  "bookmark_label": "Finance Portal Launcher",
+  "group_ids": [],
+  "status": "INACTIVE",
+  "owner": "finance-platform",
+  "requested_by": "developer@example.com",
+  "environment": "dev",
+  "sal": "SAL2"
+}

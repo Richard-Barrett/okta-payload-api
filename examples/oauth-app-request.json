@@ -1,0 +1,15 @@
+{
+  "key": "automation-service-dev",
+  "label": "Automation Service Development",
+  "protocol": "oauth2",
+  "client_type": "service",
+  "grant_types": ["client_credentials"],
+  "response_types": ["token"],
+  "token_endpoint_auth_method": "private_key_jwt",
+  "jwks_uri": "https://automation-dev.example.com/.well-known/jwks.json",
+  "status": "INACTIVE",
+  "owner": "platform-automation",
+  "requested_by": "developer@example.com",
+  "environment": "dev",
+  "sal": "SAL2"
+}
